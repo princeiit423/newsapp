@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>News APP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+   <style> 
+    .container{
+      margin-left:100px;
+    }
+
+   </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">News<span style="color: green;" class="">Buzz</span></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a id="service" class="nav-link" href="#">service</a>
+              </li>
+              <li class="nav-item">
+                <a id="about" class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a id="contacts" class="nav-link" href="https://www.linkedin.com/in/faiz-hussain-257001250/">contacts</a>
+              </li>
+              
+              
+            </ul>
+            <form class="d-flex " role="search">
+              <input id="searchInput" class="form-control me-2" class="searching" type="search" placeholder="Search" aria-label="Search">
+              <button id="search" class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <h3 class="heading mt-2" style="text-align: center;">News About <span style="font-weight: 700;" class="state">Bollywood</span> </h3>
+      
+       <div class="container row d-flex justify-content-evenly">
+        <div id="main-card" class="card m-y-5 mx-5" style="width: 18rem; margin-bottom:70px;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body" style="">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Read Article</a>
+            </div>
+          </div>
+        </div>    
+
+    <div class= "d-flex justify-content-evenly mt-5"> 
+        <button class="btn btn-primary" > < Previous page</button>
+        <button class=" nxt btn btn-primary">Next page > </button>
+    </div>
+
+    <script> 
+        
+      const factNews = async (query)=>{
+              console.log(`fetching news for ${query}`);
+        apikey = 'f1c52836028d948a4fd081cf20379aef';
+            url = `https://gnews.io/api/v4/search?q=${query}&lang=en&country=in&max=10&apikey=${apikey}`;
+            
+            await fetch(url)
+              .then(function (response) {
+                return response.json();
+              })
+              .then(function (data) {
+                articles = data.articles;
+    
+                let str="";
+                for (i = 0; i < articles.length; i++) {
+                    str= str + `<div class="card" style="width: 18rem;">
+                        <img src="${articles[i].image}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">${articles[i].title}</h5>
+                          <p class="card-text">${articles[i].description}</p>
+                          <a href="${articles[i].url}" class="btn btn-primary">Read article</a>
+                        </div>
+                      </div>`
+                }
+                document.querySelector(".container").innerHTML= str
+
+    
+            }) ;
+    
+    }
+    factNews("bollywood");
+
+    search.addEventListener("click",(e)=>{
+      e.preventDefault();
+      let query= searchInput.value;
+      document.querySelector(".state").innerText= searchInput.value;
+      factNews(query);
+    }) 
+
+    let test=document.querySelector('.nxt');
+    test.addEventListener("click",()=>{
+      console.log("next page triiggered");
+    })
+
+
+    </script>
+  </body>
+
+  <!-- Remove the container if you want to extend the Footer to full width. -->
+  <!-- Footer -->
+  <footer
+          class="mt-5 text-center text-lg-start text-dark"
+          style="background-color: #ECEFF1"
+          >
+    <!-- Section: Social media -->
+    <section
+             class="d-flex justify-content-between p-4 text-white"
+             style="background-color: #21D192"
+             >
+      <!-- Left -->
+      <div class="me-5">
+        <span>Get connected with us on social networks:</span>
+      </div>
+      <!-- Left -->
+
+      <!-- Right -->
+      <div>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold">NewsBuzz</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px"
+                />
+            <p>
+              Here you can use rows and columns to organize your footer
+              content. Lorem ipsum dolor sit amet, consectetur adipisicing
+              elit.
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold">Products</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px"
+                />
+            <p>
+              <a href="#!" class="text-dark">NewsApi</a>
+            </p>
+            <p>
+              <a href="#!" class="text-dark">Newscut</a>
+            </p>
+            <p>
+              <a href="#!" class="text-dark">BrandFlow</a>
+            </p>
+            <p>
+              <a href="#!" class="text-dark">Angular</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold">Useful links</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px"
+                />
+            <p>
+              <a href="#!" class="text-dark">Faiz Hussain</a>
+            </p>
+            <p>
+              <a href="#!" class="text-dark">Become an Affiliate</a>
+            </p>
+            <p>
+              <a href="#!" class="text-dark">Shipping Rates</a>
+            </p>
+            <p>
+              <a href="#!" class="text-dark">Help</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold">Contact</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px"
+                />
+            <p><i class="fas fa-home mr-3"></i>Faiz Hussain</p>
+            <p><i class="fas fa-envelope mr-3"></i>princeiit423@gmail.com</p>
+            <p><i class="fas fa-phone mr-3"></i> +913469821799</p>
+            <p><i class="fas fa-print mr-3"></i> +913469821723</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div
+         class="text-center p-3"
+         style="background-color: rgba(0, 0, 0, 0.2)"
+         >
+      © 2020 Copyright:
+      <a class="text-dark" href="#"
+         >NewsBuzz</a
+        >
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+<!-- End of .container -->
+
+</html>
