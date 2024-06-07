@@ -33,6 +33,17 @@
               <li class="nav-item">
                 <a id="contacts" class="nav-link" href="https://www.linkedin.com/in/faiz-hussain-257001250/">contacts</a>
               </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                  Hot Topics
+                </a>
+                <ul class="dropdown-menu">
+                  <li><button class="sports" style= border-radius:3px;>Sports</button></li>
+                  <li><button class="Entertainment" style= border-radius:3px;>Entertainment</button></li>
+                  <li><button class="politics" style= border-radius:3px;>Politics</button></li>
+                </ul>
+              </li>
+
               
               
             </ul>
@@ -78,7 +89,7 @@
     
                 let str="";
                 for (i = 0; i < articles.length; i++) {
-                    str= str + `<div class="card" style="width: 18rem;">
+                    str= str + `<div class="card my-5" style="width: 18rem;">
                         <img src="${articles[i].image}" class="card-img-top" alt="...">
                         <div class="card-body">
                           <h5 class="card-title">${articles[i].title}</h5>
@@ -102,9 +113,22 @@
       factNews(query);
     }) 
 
-    let test=document.querySelector('.nxt');
-    test.addEventListener("click",()=>{
-      console.log("next page triiggered");
+    
+    let test= document.querySelector(".sports");
+    test.addEventListener("click", ()=>{
+        query="sports";
+        factNews(query);
+    })
+
+    let test1= document.querySelector(".Entertainment");
+    test1.addEventListener("click", ()=>{
+        query="entertainment";
+        factNews(query);
+    })
+    let test2= document.querySelector(".politics");
+    test2.addEventListener("click", ()=>{
+        query="politics";
+        factNews(query);
     })
 
 
