@@ -92,8 +92,8 @@
                     str= str + `<div class="card my-5" style="width: 18rem;">
                         <img src="${articles[i].image}" class="card-img-top" alt="...">
                         <div class="card-body">
-                          <h5 class="card-title">${articles[i].title}</h5>
-                          <p class="card-text">${articles[i].description}</p>
+                          <h5 class="card-title">${articles[i].title.slice(0,50}</h5>
+                          <p class="card-text">${articles[i].description.slice(0,100}</p>
                           <a href="${articles[i].url}" class="btn btn-primary">Read article</a>
                         </div>
                       </div>`
